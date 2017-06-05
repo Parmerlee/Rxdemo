@@ -28,16 +28,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        Observable<Integer> observable = Observable.create(new ObservableOnSubscribe<Integer>() {
-//            @Override
-//            public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
-////                Log.d(TAG, "Observable thread is : " + Thread.currentThread().getName());
-//                Log.d(TAG, "emit 1");
-//                emitter.onNext(1);
-//                emitter.onNext(2);
-//                emitter.onNext(3);
-//            }
-//        });
+        Observable<Integer> observable = Observable.create(new ObservableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
+//                Log.d(TAG, "Observable thread is : " + Thread.currentThread().getName());
+                Log.d(TAG, "emit 1");
+                emitter.onNext(1);
+                emitter.onNext(2);
+                emitter.onNext(3);
+            }
+        });
 //
         Consumer<String> consumer = new Consumer<String>() {
             @Override
@@ -49,18 +49,18 @@ public class MainActivity extends AppCompatActivity {
 //
 ////        observable.subscribe(consumer);
 //
-//        observable
-//                .subscribeOn(Schedulers.newThread()) //Schedulers.newThread() Rx内置的子线程，subscribeOn指定subscribe运行的线程
-//                .map(new Function<Integer, String>() {
-//                    @Override
-//                    public String apply(@NonNull Integer integer) throws Exception {
-//
-//                        return "this is a :" + integer;
-//
-//                    }
-//                })
-//                .observeOn(AndroidSchedulers.mainThread()) //()Android主线程，observeOn同上。
-//                .subscribe(consumer);
+        observable
+                .subscribeOn(Schedulers.newThread()) //Schedulers.newThread() Rx内置的子线程，subscribeOn指定subscribe运行的线程
+                .map(new Function<Integer, String>() {
+                    @Override
+                    public String apply(@NonNull Integer integer) throws Exception {
+
+                        return "this is a :" + integer;
+
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread()) //()Android主线程，observeOn同上。
+                .subscribe(consumer);
 //
 //
 //        observable.flatMap(new Function<Integer, ObservableSource<String>>() {
@@ -125,7 +125,4 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
- private static void mian(String[] args){
-
- }
 }

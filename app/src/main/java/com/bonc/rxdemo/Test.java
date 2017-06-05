@@ -2,6 +2,7 @@ package com.bonc.rxdemo;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
+import java.util.Locale;
 
 /**
  * Created by Administrator on 2017/5/23.
@@ -28,9 +29,22 @@ public class Test {
          * 第二个参数realSubject.getClass().getInterfaces()，我们这里为代理对象提供的接口是真实对象所实行的接口，表示我要代理的是该真实对象，这样我就能调用这组接口中的方法了
          * 第三个参数handler， 我们这里将这个代理对象关联到了上方的 InvocationHandler 这个对象上
          */
-        RealShoppingImpl userServiceProxy = (RealShoppingImpl) Proxy.newProxyInstance(impl.getClass().getClassLoader(),
-                impl.getClass().getInterfaces(), invocationHandler);
-        userServiceProxy.doShopping(200);
+//        RealShoppingImpl userServiceProxy = (RealShoppingImpl) Proxy.newProxyInstance(impl.getClass().getClassLoader(),
+//                impl.getClass().getInterfaces(), invocationHandler);
+//        userServiceProxy.doShopping(200);
+        int count = 0;
+        for (int i = 1; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                for (int k = 0; k < 5; k++) {
+                    boolean b = i == j || j == k || i == k;
+                    if (!b) {
+                        count += 1;
+                        System.err.println(String.format(Locale.CHINA,"%d,%d,%d", i, j, k));
+                    }
+                }
+            }
+        }
+        System.err.println("count:" + count);
     }
 
 
